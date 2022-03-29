@@ -22,12 +22,12 @@ yarn-error.log
 *.sublime-workspace
 
 # Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+Client/cric-frontend/.vscode/*
+Client/cric-frontend/!.vscode/settings.json
+Client/cric-frontend/!.vscode/tasks.json
+Client/cric-frontend/!.vscode/launch.json
+Client/cric-frontend/!.vscode/extensions.json
+Client/cric-frontend/.history/*
 
 # Miscellaneous
 Client/cric-frontend/.angular/cache
