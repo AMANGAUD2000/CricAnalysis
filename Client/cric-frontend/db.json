@@ -1,0 +1,38 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "registerUsers": [
+    {
+      "fullname": "Aman Gaud",
+      "email": "aman.gaud2000@gmail.com",
+      "password": "1234",
+      "confirmPassword": "1234",
+      "mobile": "+917987188230",
+      "id": 1
+    },
+    {
+      "fullname": "Tony Stark",
+      "email": "aman.gaud200@gmail.com",
+      "password": "123",
+      "confirmPassword": "123",
+      "mobile": "+91798718823",
+      "id": 2
+    },
+    {
+      "fullname": "Aman Gaud",
+      "email": "aman.gaud2@gmail.com",
+      "mobile": "+9179871882302",
+      "password": "12345",
+      "confirmPassword": "12345",
+      "id": 3
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
