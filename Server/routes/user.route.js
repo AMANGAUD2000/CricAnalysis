@@ -8,11 +8,10 @@ router.post("/register", (req, res) => {
     email: req.body.email,
     mobile: req.body.mobile,
     password: req.body.password,
-    profilepic: "",
-    no35: "",
-    no50: "",
-    no100: "",
-    clubName: "",
+    profilepic: req.body.profilepic,
+    DOB: req.body.DOB,
+    clubName: req.body.clubName,
+    Nationality: req.body.Nationality,
   });
 
   User.addUser(user, (err, result) => {
@@ -30,6 +29,17 @@ router.post("/login", (req, res) => {
     }
     return res.json({ success: true, message: result });
   });
+});
+
+router.post("/profile", async (req, res) => {
+  try {
+    console.log(req.body.email);
+    const getUser = await User.find({ email: req.body.email });
+    console.log(getUser);
+    res.send({ User: getUser });
+  } catch (err) {
+    console.log("Something went wrong");
+  }
 });
 
 module.exports = router;

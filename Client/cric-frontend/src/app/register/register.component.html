@@ -8,11 +8,52 @@
                         <h6>Register Yourself here!</h6>
 
                     </div>
-                    <!-- <form #register="ngForm" (ngSubmit)="submit(register)">
+                    <!-- <form #registerForm="ngForm" (ngSubmit)="submit(registerForm)">
+
                         <div class="mb-3">
                             <label for="fullName" class="form-label">Full Name</label>
-                            <input name="fullname" ngModel #fullname="ngModel" minlength="3" formControlName="fullname"
-                                type="text" class="form-control" id="fullName" required>
+                            <input name="fullname" [(ngModel)]="register.fullname" type="text" class="form-control"
+                                id="fullName" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="mobile" class="form-label">Mobile Number</label>
+                            <input [(ngModel)]="register.mobile" pattern="^((\\+91-?)|0)?[0-9]{10}$" type="text"
+                                class="form-control" id="mobile" name="mobile" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input name="email" [(ngModel)]="register.email" type="email" class="form-control"
+                                id="email" aria-describedby="emailHelp" pattern="" required email>
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input name="password" [(ngModel)]="register.password" type="password" class="form-control"
+                                id="password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <input [(ngModel)]="register.confirmPassword" type="password" class="form-control"
+                                id="confirmPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Register</button>
+                        <button type="reset" class="btn btn-danger mx-3">Cancel</button>
+                    </form>
+
+
+
+                    <a style="color: white; margin-top:10px;" routerLink="/login"><b>Already registered?</b> Click here
+                        to login!!</a> -->
+
+
+
+                    <form #register="ngForm" (ngSubmit)="submit(register)">
+
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">Full Name</label>
+                            <input name="fullname" ngModel #fullname="ngModel" minlength="3" type="text"
+                                class="form-control" id="fullName" required>
                             <div *ngIf="fullname.invalid && (fullname.dirty || fullname.touched)"
                                 class="alert alert-danger">
 
@@ -23,35 +64,75 @@
                                     Name must be at least 4 characters long.
                                 </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="mobileNumber" class="form-label">Mobile Number</label>
-                                <input formControlName="mobile" type="text" class="form-control" id="mobileNumber"
-                                    required ngModel>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="mobile" class="form-label">Mobile Number</label>
+                            <input #mobile="ngModel" pattern="^((\\+91-?)|0)?[0-9]{10}$" minlength="10" maxlength="12"
+                                type="text" class="form-control" id="mobile" name="mobile" required ngModel email>
+                            <div *ngIf="mobile.errors &&  (mobile.dirty || mobile.touched)" class="alert alert-danger">
+                                <div *ngIf="mobile.errors?.['required']">
+                                    Mobile number is required.
+                                </div>
+                                <div *ngIf="mobile.errors?.['pattern']">
+                                    Mobile number invalid
+                                </div>
+
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" required ngModel>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input #email="ngModel" name="email" type="email" class="form-control" id="email"
+                                aria-describedby="emailHelp"
+                                pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
+                                required ngModel>
+                            <div *ngIf="email.errors &&  (email.dirty || email.touched)" class="alert alert-danger">
+                                <div *ngIf="email.errors?.['required']">
+                                    Email is required.
+                                </div>
+                                <div *ngIf="email.errors?.['pattern']">
+                                    Enter a valid email.
+                                </div>
+
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Password</label>
-                                <input formControlName="password" type="password" class="form-control"
-                                    id="exampleInputPassword1" required ngModel>
+                        </div>
+                        <div class="mb-3">
+
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input #password="ngModel" name="password" type="password" class="form-control"
+                                id="exampleInputPassword1" required ngModel>
+                            <div *ngIf="password.errors &&  (password.dirty || password.touched)"
+                                class="alert alert-danger">
+                                <div *ngIf="password.errors?.['required']">
+                                    Password is required.
+                                </div>
+
                             </div>
-                            <div class="mb-3">
-                                <label for="confirmPassword" class="form-label">Confirm Password</label>
-                                <input formControlName="confirmPassword" type="password" class="form-control"
-                                    id="confirmPassword" required ngModel>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <input #confirmPassword="ngModel" name="confirmPassword" type="password"
+                                class="form-control" id="confirmPassword" required ngModel>
+
+                            <div *ngIf="(confirmPassword.touched || register.submitted) && confirmPassword.errors?.['required']"
+                                class="alert alert-danger">
+                                <div *ngIf="confirmPassword.errors?.['required']">
+                                    This is a required field
+                                </div>
+                                <div *ngIf="confirmPassword!== password">
+                                    Passwords not Matching
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-success">Register</button>
-                            <button type="reset" class="btn btn-danger mx-3">Cancel</button>
-                    </form> -->
+                        </div>
+                        <button type="submit" class="btn btn-success"
+                            [disabled]="!register.form.valid">Register</button>
+                        <button type="reset" class="btn btn-danger mx-3">Cancel</button>
+                    </form>
 
+                    <a style="color: white; margin-top:10px;" routerLink="/login"><b>Already registered?</b> Click here
+                        to login!!</a>
 
-
-
-
-
+                    <!-- 
                     <form [formGroup]="registerForm" (ngSubmit)="register()">
                         <div class="mb-3">
                             <label for="fullName" class="form-label">Full Name</label>
@@ -80,10 +161,10 @@
                         </div>
                         <button type="submit" class="btn btn-success">Register</button>
                         <button type="reset" class="btn btn-danger mx-3">Cancel</button>
-                    </form>
-                    <a style="color: white; margin-top:10px;" routerLink="/login"><b>Already registered?</b> Click here
-                        to login!!</a>
+                    </form> -->
+
                 </div>
             </div>
         </div>
     </div>
+</div>

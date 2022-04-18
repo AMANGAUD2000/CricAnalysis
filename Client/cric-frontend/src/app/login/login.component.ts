@@ -22,9 +22,10 @@ export class LoginComponent implements OnInit {
     this.http.post<any>("http://localhost:5000/users/login",this.loginForm.value)
     .subscribe(res=>{
       if(res.success){
-        alert(res.message);
-        this.loginForm.reset();
+        localStorage.setItem("user", this.loginForm.value.email)
+        console.log(res);
         this.router.navigate(['dashboard'])
+       
       }else{
         alert(res.message);
       } 

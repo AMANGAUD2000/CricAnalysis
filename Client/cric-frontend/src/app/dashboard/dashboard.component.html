@@ -7,7 +7,7 @@
             autocomplete="off">
         <div class="navbar-nav">
             <div class="nav-item text-nowrap">
-                <a class="nav-link px-3" routerLink="/login">log out</a>
+                <a class="nav-link px-3" (click)="logout()" routerLink="/login">log out</a>
             </div>
         </div>
 
@@ -15,7 +15,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
+            <nav id="sidebarMenu" class=" bg-dark col-md-3 col-lg-2 d-md-block  sidebar collapse">
                 <div class=" position-fixed pt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item">
@@ -30,20 +30,47 @@
                             </a>
                         </li>
 
+
                         <li class="nav-item">
-                            <a class="nav-link" routerLink="/dashboard">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-users" aria-hidden="true">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                    <circle cx="9" cy="7" r="4"></circle>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                </svg>
-                                Profile
-                            </a>
+                            <div class="accordion" id="accordionExample">
+                                <div class="accordion-item bg-dark">
+                                    <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#collapseProfile"
+                                        aria-expanded="true" aria-controls="collapseProfile">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"
+                                            aria-hidden="true">
+                                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="9" cy="7" r="4"></circle>
+                                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                        </svg>
+                                        Profile
+                                    </a>
+                                    <div id="collapseProfile" class="accordion-collapse collapse show"
+                                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body" style="color: white; padding-right: 0px;
+                                        padding-left: 0px;">
+                                            <div class="container px-4">
+                                                <div class="row">
+                                                    <div>Profile Picture</div><img src={{this.data?.profilepic}} alt=""
+                                                        style="width:4%;border-radius:50%;object-fit: contain"><br>
+                                                    <div>
+                                                        Name:<br>{{this.data?.fullname}}<br>Club
+                                                        Name<br>{{this.data?.clubname}}<br>Nationality<br>{{this.data?.Nationality}}<br>Total
+                                                        Runs<br>{{this.careerData?.TotalRuns}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" routerLink="/dashboard">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -54,7 +81,7 @@
                                 </svg>
                                 Reports
                             </a>
-                        </li>
+                        </li> -->
 
                     </ul>
 
@@ -72,90 +99,156 @@
                         </a>
                     </h6>
                     <ul class="nav flex-column mb-2">
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="/dashboard">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-file-text" aria-hidden="true">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                    <polyline points="14 2 14 8 20 8"></polyline>
-                                    <line x1="16" y1="13" x2="8" y2="13"></line>
-                                    <line x1="16" y1="17" x2="8" y2="17"></line>
-                                    <polyline points="10 9 9 9 8 9"></polyline>
-                                </svg>
-                                Total 100s
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="/dashboard">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-file-text" aria-hidden="true">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                    <polyline points="14 2 14 8 20 8"></polyline>
-                                    <line x1="16" y1="13" x2="8" y2="13"></line>
-                                    <line x1="16" y1="17" x2="8" y2="17"></line>
-                                    <polyline points="10 9 9 9 8 9"></polyline>
-                                </svg>
-                                Totla 50s
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="/dashboard">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-file-text" aria-hidden="true">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                    <polyline points="14 2 14 8 20 8"></polyline>
-                                    <line x1="16" y1="13" x2="8" y2="13"></line>
-                                    <line x1="16" y1="17" x2="8" y2="17"></line>
-                                    <polyline points="10 9 9 9 8 9"></polyline>
-                                </svg>
-                                Total Wickets
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="/dashboard">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-file-text" aria-hidden="true">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                    <polyline points="14 2 14 8 20 8"></polyline>
-                                    <line x1="16" y1="13" x2="8" y2="13"></line>
-                                    <line x1="16" y1="17" x2="8" y2="17"></line>
-                                    <polyline points="10 9 9 9 8 9"></polyline>
-                                </svg>
-                                Out>50
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="/dashboard">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-file-text" aria-hidden="true">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                    <polyline points="14 2 14 8 20 8"></polyline>
-                                    <line x1="16" y1="13" x2="8" y2="13"></line>
-                                    <line x1="16" y1="17" x2="8" y2="17"></line>
-                                    <polyline points="10 9 9 9 8 9"></polyline>
-                                </svg>
-                                Out>100
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="/dashboard">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-file-text" aria-hidden="true">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                    <polyline points="14 2 14 8 20 8"></polyline>
-                                    <line x1="16" y1="13" x2="8" y2="13"></line>
-                                    <line x1="16" y1="17" x2="8" y2="17"></line>
-                                    <polyline points="10 9 9 9 8 9"></polyline>
-                                </svg>
-                                Best Score
-                            </a>
-                        </li>
+
+                        <div class="accordion" id="accordionExample">
+                            <li class="nav-item">
+                                <div class="accordion-item bg-dark">
+                                    <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                        aria-expanded="true" aria-controls="collapseOne">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-file-text" aria-hidden="true">
+                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z">
+                                            </path>
+                                            <polyline points="14 2 14 8 20 8"></polyline>
+                                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                                            <polyline points="10 9 9 9 8 9"></polyline>
+                                        </svg>
+                                        Total 100s
+                                    </a>
+                                    <div id="collapseOne" class="accordion-collapse collapse show"
+                                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body" style="color: white;">
+                                            {{this.careerData?.no100}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <div class="accordion-item bg-dark">
+                                    <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                        aria-expanded="true" aria-controls="collapseTwo">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-file-text" aria-hidden="true">
+                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z">
+                                            </path>
+                                            <polyline points="14 2 14 8 20 8"></polyline>
+                                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                                            <polyline points="10 9 9 9 8 9"></polyline>
+                                        </svg>
+                                        Total 50s
+                                    </a>
+                                    <div id="collapseTwo" class="accordion-collapse collapse"
+                                        aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body" style="color: white;">
+                                            {{this.careerData?.no50}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <div class="accordion-item bg-dark">
+                                    <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                        aria-expanded="true" aria-controls="collapseThree ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-file-text" aria-hidden="true">
+                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z">
+                                            </path>
+                                            <polyline points="14 2 14 8 20 8"></polyline>
+                                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                                            <polyline points="10 9 9 9 8 9"></polyline>
+                                        </svg>
+                                        Totla Wickets
+                                    </a>
+                                    <div id="collapseThree" class="accordion-collapse collapse"
+                                        aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body" style="color: white;">
+                                            {{this.careerData?.no100}}</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <div class="accordion-item bg-dark">
+                                    <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                                        aria-expanded="true" aria-controls="collapseFour">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-file-text" aria-hidden="true">
+                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z">
+                                            </path>
+                                            <polyline points="14 2 14 8 20 8"></polyline>
+                                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                                            <polyline points="10 9 9 9 8 9"></polyline>
+                                        </svg>
+                                        Out < 50 </a>
+                                            <div id="collapseFour" class="accordion-collapse collapse"
+                                                aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                                <div class="accordion-body" style="color: white;">
+                                                    {{this.careerData?.Out35b50}}</div>
+                                            </div>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <div class="accordion-item bg-dark">
+                                    <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#collapseFive"
+                                        aria-expanded="true" aria-controls="collapseFive">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-file-text" aria-hidden="true">
+                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z">
+                                            </path>
+                                            <polyline points="14 2 14 8 20 8"></polyline>
+                                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                                            <polyline points="10 9 9 9 8 9"></polyline>
+                                        </svg>
+                                        Out>100
+                                    </a>
+                                    <div id="collapseFive" class="accordion-collapse collapse"
+                                        aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body" style="color: white;">
+                                            {{this.careerData?.Out50b100}}</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <div class="accordion-item bg-dark">
+                                    <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#collapseSix"
+                                        aria-expanded="true" aria-controls="collapseSix">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-file-text" aria-hidden="true">
+                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z">
+                                            </path>
+                                            <polyline points="14 2 14 8 20 8"></polyline>
+                                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                                            <polyline points="10 9 9 9 8 9"></polyline>
+                                        </svg>
+                                        Best Score
+                                    </a>
+                                    <div id="collapseSix" class="accordion-collapse collapse"
+                                        aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body" style="color: white;">
+                                            {{this.careerData?.BestScore}}</div>
+                                    </div>
+                                </div>
+                            </li>
+                        </div>
+
+
                     </ul>
                 </div>
             </nav>
@@ -169,31 +262,8 @@
                         <div class=""></div>
                     </div>
                 </div>
-                <div class="shadow p-3 mb-5 bg-white rounded">
-                    <div
-                        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom ">
-                        <h1 class="h3">Performance in Last 5 years</h1>
-                        <div class="btn-toolbar mb-2 mb-md-0">
-                            <div class="btn-group me-2">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">T20</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">One Day</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Test</button>
-                            </div>
-                            <!-- <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-calendar" aria-hidden="true">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                <line x1="16" y1="2" x2="16" y2="6"></line>
-                                <line x1="8" y1="2" x2="8" y2="6"></line>
-                                <line x1="3" y1="10" x2="21" y2="10"></line>
-                            </svg>
-                            This week
-                        </button> -->
-                        </div>
-                    </div>
-                    <app-chart></app-chart>
-                </div>
+
+                <app-chart></app-chart>
 
 
 
@@ -214,41 +284,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
 
-                                            <td>World Cup Semi Finals</td>
-                                            <td>Pakistan</td>
+                                        <tr *ngFor="let tour of this.tourData ">
 
-                                            <td>Mars</td>
+                                            <td>{{tour.TournamentName}}</td>
+                                            <td>{{tour.Opponent}}</td>
+                                            <td>{{tour.Location}}</td>
                                         </tr>
-                                        <tr>
 
-                                            <td>Asia Cup Semi Finals</td>
-                                            <td>Australia</td>
-
-                                            <td>Mars</td>
-                                        </tr>
-                                        <tr>
-
-                                            <td>Test Match</td>
-                                            <td>Newzealand</td>
-
-                                            <td>Mars</td>
-                                        </tr>
-                                        <tr>
-
-                                            <td>IPL</td>
-                                            <td>Mumbai Indians</td>
-
-                                            <td>Mars</td>
-                                        </tr>
-                                        <tr>
-
-                                            <td>Champions Trophy</td>
-                                            <td>England</td>
-
-                                            <td>Mars</td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -257,20 +300,45 @@
                     <div class="card mx-2 shadow p-3 mb-5 bg-white rounded">
 
                         <div class="card-body">
-                            <h5 class="card-title">Statistics</h5>
-                            <p class="card-text">This card has supporting text below as a natural lead-in to
-                                additional content.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <!-- <h5 class="card-title">Statistics</h5> -->
+                            <div>
+                                <!-- <h6>Leg Side Shots :</h6>
+                                <div>{{this.shotsData?.LegSide}}</div>
+                                <h6>Off Side Shots :</h6>
+                                <div>{{this.shotsData?.OffSide}}</div> -->
+                                <app-stats></app-stats>
+
+                            </div>
                         </div>
                     </div>
+                    <!-- AverageSpeed: 130
+                    BowlingStyle: "Right-arm fast"
+                    Economy: 5.65
+                    Email: "ms.dhoni@gmail.com"
+                    OdiWickets: 100
+                    T20Wickets: 200
+                    TestWickets: 100
+                    TotalWickets: 400 -->
                     <div class="card shadow p-3 mb-5 bg-white rounded">
 
                         <div class="card-body">
                             <h5 class="card-title">Bowling Details</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural
-                                lead-in to additional content. This card has even longer content than the first to
-                                show that equal height action.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <h6 style="margin-bottom: 1px;">Bowling Style :</h6>
+                            <div style="margin-bottom: 4px;">{{this.BowlingData?.BowlingStyle}}</div>
+                            <h6 style="margin-bottom: 1px;">Average Speed :</h6>
+                            <div>{{this.BowlingData?.AverageSpeed}}</div>
+                            <h6 style="margin-bottom: 1px;">Economy :</h6>
+                            <div style="margin-bottom: 4px;">{{this.BowlingData?.Economy}}</div>
+                            <h6 style="margin-bottom: 1px;">Odi Wickets :</h6>
+                            <div style="margin-bottom: 4px;">{{this.BowlingData?.OdiWickets}}</div>
+                            <h6 style="margin-bottom: 1px;">T20 Wickets :</h6>
+                            <div style="margin-bottom: 4px;">{{this.BowlingData?.T20Wickets}}</div>
+                            <h6 style="margin-bottom: 1px;">Test Wickets :</h6>
+                            <div style="margin-bottom: 4px;">{{this.BowlingData?.TestWickets}}</div>
+                            <h6 style="margin-bottom: 1px;">Total Wickets :</h6>
+                            <div style="margin-bottom: 4px;">{{this.BowlingData?.TotalWickets}}</div>
+
+
                         </div>
                     </div>
                 </div>
