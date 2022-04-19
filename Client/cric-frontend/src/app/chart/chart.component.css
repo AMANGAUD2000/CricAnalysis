@@ -3,5 +3,7 @@
 }
 canvas {
   aspect-ratio: initial;
-  height: 125px;
+}
+.mb-5 {
+  margin-bottom: 1rem !important;
 }

@@ -1,6 +1,41 @@
 <body cz-shortcut-listen="true" data-new-gr-c-s-check-loaded="14.1052.0" data-gr-ext-installed="">
 
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+
+
+    <header class="navbar navbar-dark fixed-top navbar-expand-lg bg-dark flex-md-nowrap p-0 shadow">
+        <button class="navbar-toggler position-relative d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand  position-relative col-md-3 col-lg-2 me-0 px-3" routerLink="/dashboard">CricAnalysis</a>
+
+
+        <input class="form-control form-control-dark" id="form" style="width: 20%; margin-left: auto;" type="text"
+            placeholder="Search" aria-label="Search">
+
+
+
+        <div class="navbar-item text-nowrap" style="margin-left: auto;">
+            <div class="icon" id="bell"> <img src="https://i.imgur.com/AC7dgLA.png" alt="">
+            </div>
+        </div>
+
+        <div class="navbar-nav" style="margin-right: 10px;">
+            <div class="nav-item text-nowrap">
+                <a class="nav-link px-3" (click)="logout()" routerLink="/login">Sign out</a>
+            </div>
+
+        </div>
+
+
+    </header>
+
+
+
+
+    <!-- <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" routerLink="/dashboard">CricAnalysis</a>
 
         <input class="form-control form-control-dark w-50" type="text" placeholder="Search" aria-label="Search"
@@ -11,15 +46,16 @@
             </div>
         </div>
 
-    </nav>
+    </nav> -->
 
     <div class="container-fluid">
         <div class="row">
-            <nav id="sidebarMenu" class=" bg-dark col-md-3 col-lg-2 d-md-block  sidebar collapse">
+
+            <nav id="sidebarMenu" class=" bg-dark col-md-3 col-lg-2 d-md-block  sidebar collapse" style="width: 20%;">
                 <div class=" position-fixed pt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" routerLink="/dashboard">
+                            <div class="nav-link active" aria-current="page" routerLink="/dashboard">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-home" aria-hidden="true">
@@ -27,14 +63,14 @@
                                     <polyline points="9 22 9 12 15 12 15 22"></polyline>
                                 </svg>
                                 Dashboard
-                            </a>
+                            </div>
                         </li>
 
 
                         <li class="nav-item">
                             <div class="accordion" id="accordionExample">
                                 <div class="accordion-item bg-dark">
-                                    <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#collapseProfile"
+                                    <div class="nav-link" data-bs-toggle="collapse" data-bs-target="#collapseProfile"
                                         aria-expanded="true" aria-controls="collapseProfile">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -46,19 +82,36 @@
                                             <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                                         </svg>
                                         Profile
-                                    </a>
-                                    <div id="collapseProfile" class="accordion-collapse collapse show"
+                                    </div>
+                                    <div id="collapseProfile" class="accordion-collapse collapse "
                                         aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                         <div class="accordion-body" style="color: white; padding-right: 0px;
-                                        padding-left: 0px;">
+                                        padding-left: 0px; width:inherit; max-width: 239px;">
                                             <div class="container px-4">
                                                 <div class="row">
-                                                    <div>Profile Picture</div><img src={{this.data?.profilepic}} alt=""
-                                                        style="width:4%;border-radius:50%;object-fit: contain"><br>
+                                                    <img src={{this.data?.profilepic}} alt=""
+                                                        style="width:50%;border-radius:50%;object-fit: contain; position: inherit;"><br>
                                                     <div>
-                                                        Name:<br>{{this.data?.fullname}}<br>Club
-                                                        Name<br>{{this.data?.clubname}}<br>Nationality<br>{{this.data?.Nationality}}<br>Total
-                                                        Runs<br>{{this.careerData?.TotalRuns}}</div>
+                                                        <div class="h7"
+                                                            style="margin-bottom: 0px; text-transform: uppercase; color: rgb(63, 173, 236) ;">
+                                                            {{this.data?.fullname}}</div>
+                                                        <div class="h7" style="margin-bottom: 0px;">Club Name :
+                                                            <b
+                                                                style="color:rgb(201, 153, 245)">{{this.data?.clubName}}</b>
+                                                        </div>
+                                                        <div class="h7" style="margin-bottom: 0px;">Nationality :
+                                                            <b style="color:teal;">{{this.data?.Nationality}}</b>
+                                                        </div>
+                                                        <div class=" h7" style="margin-bottom: 0px;">Total Runs :
+                                                            <b
+                                                                style="color:rgb(243, 59, 68)">{{this.careerData?.TotalRuns}}</b>
+                                                        </div>
+
+
+
+
+
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -118,7 +171,7 @@
                                         </svg>
                                         Total 100s
                                     </a>
-                                    <div id="collapseOne" class="accordion-collapse collapse show"
+                                    <div id="collapseOne" class="accordion-collapse collapse "
                                         aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                         <div class="accordion-body" style="color: white;">
                                             {{this.careerData?.no100}}
@@ -253,7 +306,7 @@
                 </div>
             </nav>
 
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="width:80%">
                 <div class="chartjs-size-monitor">
                     <div class="chartjs-size-monitor-expand">
                         <div class=""></div>
@@ -311,33 +364,33 @@
                             </div>
                         </div>
                     </div>
-                    <!-- AverageSpeed: 130
-                    BowlingStyle: "Right-arm fast"
-                    Economy: 5.65
-                    Email: "ms.dhoni@gmail.com"
-                    OdiWickets: 100
-                    T20Wickets: 200
-                    TestWickets: 100
-                    TotalWickets: 400 -->
+
                     <div class="card shadow p-3 mb-5 bg-white rounded">
 
                         <div class="card-body">
-                            <h5 class="card-title">Bowling Details</h5>
-                            <h6 style="margin-bottom: 1px;">Bowling Style :</h6>
-                            <div style="margin-bottom: 4px;">{{this.BowlingData?.BowlingStyle}}</div>
-                            <h6 style="margin-bottom: 1px;">Average Speed :</h6>
-                            <div>{{this.BowlingData?.AverageSpeed}}</div>
-                            <h6 style="margin-bottom: 1px;">Economy :</h6>
-                            <div style="margin-bottom: 4px;">{{this.BowlingData?.Economy}}</div>
-                            <h6 style="margin-bottom: 1px;">Odi Wickets :</h6>
-                            <div style="margin-bottom: 4px;">{{this.BowlingData?.OdiWickets}}</div>
-                            <h6 style="margin-bottom: 1px;">T20 Wickets :</h6>
-                            <div style="margin-bottom: 4px;">{{this.BowlingData?.T20Wickets}}</div>
-                            <h6 style="margin-bottom: 1px;">Test Wickets :</h6>
-                            <div style="margin-bottom: 4px;">{{this.BowlingData?.TestWickets}}</div>
-                            <h6 style="margin-bottom: 1px;">Total Wickets :</h6>
-                            <div style="margin-bottom: 4px;">{{this.BowlingData?.TotalWickets}}</div>
+                            <h5 class="card-title" style="color:rgb(60, 196, 182);"><b> Bowling Details</b></h5>
 
+                            <div class=" h6" style="margin-bottom: 9px;">Bowling Style :
+                                <span style="color:rgb(112, 107, 107)"> {{this.BowlingData?.BowlingStyle}}</span>
+                            </div>
+                            <div class=" h6" style="margin-bottom: 9px;">Average Speed :
+                                <span style="color:rgb(112, 107, 107)"> {{this.BowlingData?.AverageSpeed}}</span>
+                            </div>
+                            <div class=" h6" style="margin-bottom: 9px;">Economy :
+                                <span style="color:rgb(112, 107, 107)"> {{this.BowlingData?.Economy}}</span>
+                            </div>
+                            <div class=" h6" style="margin-bottom: 9px;">Odi Wickets :
+                                <span style="color:rgb(112, 107, 107)"> {{this.BowlingData?.OdiWickets}}</span>
+                            </div>
+                            <div class=" h6" style="margin-bottom: 9px;">T20 Wickets :
+                                <span style="color:rgb(112, 107, 107)"> {{this.BowlingData?.T20Wickets}}</span>
+                            </div>
+                            <div class=" h6" style="margin-bottom: 9px;">Test Wickets :
+                                <span style="color:rgb(112, 107, 107)"> {{this.BowlingData?.TestWickets}}</span>
+                            </div>
+                            <div class=" h6" style="margin-bottom: 9px;">Total Wickets :
+                                <span style="color:rgb(112, 107, 107)"> {{this.BowlingData?.TotalWickets}}</span>
+                            </div>
 
                         </div>
                     </div>
