@@ -23,7 +23,7 @@ export class StatsComponent implements OnInit {
           if(res){
             
             this.shotsData=res.ShotsStats; 
-            console.log("I am Aman",this.shotsData) 
+            // console.log("I am Aman",this.shotsData) 
             this.myPieChart = new Chart("myPieChart", {
                 type: 'pie',
                 data: {   

@@ -86,7 +86,7 @@ body {
 
 .icon {
   cursor: pointer;
-  margin-right: 50px;
+  margin-right: 10px;
 }
 
 .icon span {
@@ -113,4 +113,7 @@ body {
   color: #eee;
   font-size: 20px;
   font-family: monospace;
+}
+.navbar-dark .custombutton .nav-link {
+  color: rgba(255, 255, 255, 0.55);
 }
