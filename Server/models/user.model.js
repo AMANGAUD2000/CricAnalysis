@@ -22,18 +22,15 @@ const userSchema = new mongoose.Schema({
   profilepic: {
     type: String,
   },
-  no35: {
-    type: Number,
-  },
-  no50: {
-    type: Number,
-  },
-  no100: {
-    type: Number,
+  DOB:{
+    type: Date,
   },
   clubName: {
     type: String,
   },
+  Nationality:{
+    type:String,
+  }
 });
 
 var User = mongoose.model("User", userSchema);

@@ -1,5 +1,9 @@
 #divChart {
   display: block;
-  width: 200px;
-  height: 200px;
+}
+canvas {
+  aspect-ratio: initial;
+}
+.mb-5 {
+  margin-bottom: 1rem !important;
 }
