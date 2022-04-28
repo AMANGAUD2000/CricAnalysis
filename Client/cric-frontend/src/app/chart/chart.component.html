@@ -1,12 +1,15 @@
 <div class="shadow p-3 mb-5 bg-white rounded">
     <div
-        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom " >
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom ">
         <h4 class="h4">Performance in Last 5 years</h4>
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
-                <button type="button" (click)="T20()" class="btn btn-sm btn-outline-secondary">T20</button>
+                <button type="button" (click)="Graph($event)" class="btn btn-sm btn-outline-secondary">T20</button>
+                <button type="button" (click)="Graph($event)" class="btn btn-sm btn-outline-secondary">One Day</button>
+                <button type="button" (click)="Graph($event)" class="btn btn-sm btn-outline-secondary">Test</button>
+                <!-- <button type="button" (click)="T20()" class="btn btn-sm btn-outline-secondary">T20</button>
                 <button type="button" (click)="OneDay()" class="btn btn-sm btn-outline-secondary">One Day</button>
-                <button type="button" (click)="Test()" class="btn btn-sm btn-outline-secondary">Test</button>
+                <button type="button" (click)="Test()" class="btn btn-sm btn-outline-secondary">Test</button> -->
             </div>
             <!-- <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"

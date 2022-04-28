@@ -58,23 +58,26 @@ export class ChartComponent implements OnInit {
     
     
   }
-  OneDay(){
-    this.text="Odi Performance"
-    this.myChart.destroy();
+  
+  Graph(event:any){
+    if(event.target.innerHTML==="T20"){
+      this.text="T20 Performance";
+      this.myChart.destroy();
+      
     const email = localStorage.getItem("user");
-    this.http.post<any>("http://localhost:5000/api/odi",{email:email})
+    this.http.post<any>("http://localhost:5000/api/t20",{email:email})
         .subscribe(res=>{
           if(res){
             
-            this.odiData=res.ODI; 
-            console.log(this.odiData) 
+            this.t20Data=res.T20; 
+            console.log(this.t20Data) 
             this.myChart = new Chart("myChart", {
                 type: 'line',
                 data: {   
-                    labels: [this.odiData?.year5, this.odiData?.year4,this.odiData?.year3,this.odiData?.year2,this.odiData?.year1],
+                    labels: [this.t20Data?.year5, this.t20Data?.year4,this.t20Data?.year3,this.t20Data?.year2,this.t20Data?.year1],
                     datasets: [{
                     label: 'Runs',
-                    data: [this.odiData?.run5, this.odiData?.run4,this.odiData?.run3,this.odiData?.run2,this.odiData?.run1],
+                    data: [this.t20Data?.run5, this.t20Data?.run4,this.t20Data?.run3,this.t20Data?.run2,this.t20Data?.run1],
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderColor: 'rgba(255, 99, 132, 1)',
                   
@@ -82,6 +85,7 @@ export class ChartComponent implements OnInit {
                     }]
                 },
                 options: {
+                  
                     scales: {
                         y: {
                             beginAtZero: true
@@ -91,16 +95,14 @@ export class ChartComponent implements OnInit {
             });
             
           }else{
-            console.log("Inside OneDay err")
+            console.log("Inside T20 err")
             alert(res.message);
           } })
-    
-  }
-  Test(){
-    this.text="Test Performance"
-    this.myChart.destroy();
-    const email = localStorage.getItem("user");
-    this.http.post<any>("http://localhost:5000/api/test",{email:email})
+    }else if(event.target.innerHTML==="Test"){
+      this.text="Test Performance"
+      this.myChart.destroy();
+      const email = localStorage.getItem("user");
+      this.http.post<any>("http://localhost:5000/api/test",{email:email})
         .subscribe(res=>{
           if(res){
             
@@ -133,25 +135,23 @@ export class ChartComponent implements OnInit {
             console.log("Inside Test err")
             alert(res.message);
           } })
-    
-  }
-  T20(){
-    this.text="T20 Performance"
+    }else{
+      this.text="Odi Performance"
     this.myChart.destroy();
     const email = localStorage.getItem("user");
-    this.http.post<any>("http://localhost:5000/api/t20",{email:email})
+    this.http.post<any>("http://localhost:5000/api/odi",{email:email})
         .subscribe(res=>{
           if(res){
             
-            this.t20Data=res.T20; 
-            console.log(this.t20Data) 
+            this.odiData=res.ODI; 
+            console.log(this.odiData) 
             this.myChart = new Chart("myChart", {
                 type: 'line',
                 data: {   
-                    labels: [this.t20Data?.year5, this.t20Data?.year4,this.t20Data?.year3,this.t20Data?.year2,this.t20Data?.year1],
+                    labels: [this.odiData?.year5, this.odiData?.year4,this.odiData?.year3,this.odiData?.year2,this.odiData?.year1],
                     datasets: [{
                     label: 'Runs',
-                    data: [this.t20Data?.run5, this.t20Data?.run4,this.t20Data?.run3,this.t20Data?.run2,this.t20Data?.run1],
+                    data: [this.odiData?.run5, this.odiData?.run4,this.odiData?.run3,this.odiData?.run2,this.odiData?.run1],
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderColor: 'rgba(255, 99, 132, 1)',
                   
@@ -159,6 +159,7 @@ export class ChartComponent implements OnInit {
                     }]
                 },
                 options: {
+                  
                     scales: {
                         y: {
                             beginAtZero: true
@@ -168,9 +169,9 @@ export class ChartComponent implements OnInit {
             });
             
           }else{
-            console.log("Inside T20 err")
+            console.log("Inside OneDay err")
             alert(res.message);
           } })
-    
+    }
   }
 }

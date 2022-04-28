@@ -1,5 +1,7 @@
 var express = require("express");
 var router = express.Router();
+const jwt = require("jsonwebtoken");
+const secret = "strongsecretkey";
 
 var User = require("../models/user.model");
 router.post("/register", (req, res) => {
@@ -23,12 +25,22 @@ router.post("/register", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-  User.login(req.body.email, req.body.password, (err, result) => {
-    if (err) {
-      return res.json({ success: false, message: err });
+  User.login(
+    req.body.email,
+    req.body.password,
+    (err, result, token, expiryTime) => {
+      if (err) {
+        return res.json({ success: false, message: err });
+      }
+
+      return res.json({
+        success: true,
+        message: result,
+        token: token,
+        expiryTime: expiryTime,
+      });
     }
-    return res.json({ success: true, message: result });
-  });
+  );
 });
 
 router.post("/profile", async (req, res) => {
