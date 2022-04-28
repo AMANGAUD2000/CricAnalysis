@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component,  ViewChild, ElementRef,  OnInit } from '@angular/core';
-import { FormBuilder, FormGroup,NgForm, Validators } from '@angular/forms'; 
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms'; 
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
@@ -13,6 +13,7 @@ export class RegisterComponent implements OnInit {
   public regexpMobile = new RegExp(/^((\\+91-?)|0)?[0-9]{10}$/);
   // public registerForm !: FormGroup;
   error: any;
+  message: any;
   resArray:any=[];
   constructor(private fromBuilder: FormBuilder, private http : HttpClient,private router:Router) { }
   // @ViewChild('registerForm',null) registerForm: NgForm;
@@ -35,23 +36,28 @@ export class RegisterComponent implements OnInit {
   }
   submit(register:any){
     console.log(register.value)
-    if(!(this.regexpEmail.test(register.value.email))){
-      alert("Please enter valid email")
-      register.controls['email'].reset();
-    }else if(!(this.regexpMobile.test(register.value.mobile))){
-       alert("Please enter valid mobile number")
-       register.controls['mobile'].reset();
-    }else{
+    // if(!(this.regexpEmail.test(register.value.email))){
+    //   // alert("Please enter valid email")
+    //   register.controls['email'].reset();
+    // }else if(!(this.regexpMobile.test(register.value.mobile))){
+    //   //  alert("Please enter valid mobile number")
+    //    register.controls['mobile'].reset();
+    // }else{
      if(register.value.password===register.value.confirmPassword ){
        this.http.post<any>('http://localhost:5000/users/register',register.value) 
        .subscribe(res=>{
          if(res.success){
-           alert("Registration Successfull")
-           register.reset();
+          //  alert("Registration Successfull")
+          this.message="Registration Successfull";
+          setTimeout(() => {
+            register.reset();
            this.router.navigate(['login']);
+        }, 2000);
+           
          }
          else{
-           alert(res.message)
+           this.error=res.message;
+          //  alert(res.message)
            register.controls['mobile'].reset();
            register.controls['email'].reset();
            register.controls['password'].reset();
@@ -69,7 +75,7 @@ export class RegisterComponent implements OnInit {
          register.controls['password'].reset();
          register.controls['confirmPassword'].reset();
        }
-     }
+    //  }
   }
   
   // get f() {

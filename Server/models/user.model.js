@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const secret = "strongestsecretkey";
 const userSchema = new mongoose.Schema({
   fullname: {
     type: String,
@@ -22,15 +24,15 @@ const userSchema = new mongoose.Schema({
   profilepic: {
     type: String,
   },
-  DOB:{
+  DOB: {
     type: Date,
   },
   clubName: {
     type: String,
   },
-  Nationality:{
-    type:String,
-  }
+  Nationality: {
+    type: String,
+  },
 });
 
 var User = mongoose.model("User", userSchema);
@@ -75,7 +77,12 @@ User.login = function (email, password, callback) {
         if (err) {
           callback("server error");
         } else if (isMatch === true) {
-          callback(null, "login successful");
+          let expiryTime = 600000;
+          const token = jwt.sign({ id: user.id }, secret, {
+            expiresIn: "5min",
+          });
+
+          callback(null, "login successful", token, expiryTime);
         } else {
           callback("login credentials incorrect");
         }

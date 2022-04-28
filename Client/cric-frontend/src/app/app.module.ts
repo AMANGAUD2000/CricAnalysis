@@ -12,6 +12,7 @@ import { ChartComponent } from './chart/chart.component';
 import { NgChartsModule } from 'ng2-charts';
 import { StatsComponent } from './stats/stats.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +21,7 @@ import { StatsComponent } from './stats/stats.component';
     DashboardComponent,
     ChartComponent,
     StatsComponent,
+
     
     
     

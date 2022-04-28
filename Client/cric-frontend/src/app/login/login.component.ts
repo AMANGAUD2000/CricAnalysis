@@ -23,6 +23,9 @@ export class LoginComponent implements OnInit {
     .subscribe(res=>{
       if(res.success){
         localStorage.setItem("user", this.loginForm.value.email)
+        localStorage.setItem('token',res.token) 
+      localStorage.setItem('expiryTime',res.expiryTime)
+
         console.log(res);
         this.router.navigate(['dashboard'])
        

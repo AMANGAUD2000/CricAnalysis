@@ -18,6 +18,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     const email = localStorage.getItem("user");
+    let expiryTime = localStorage.getItem('expiryTime')
+    let Time = Number(expiryTime)
+    console.log(expiryTime)
+    setTimeout(()=>{localStorage.clear(),this.router.navigate(['login'])},Time)
     if(email==null){
       this.router.navigate(['login'])
     }
